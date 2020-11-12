@@ -106,25 +106,27 @@ def reward_function(params):
             reward += 10.0
 
         return float(reward)
-
+        
     def fast_speed(reward, params):
-	speed=params['speed']
-        if speed < 3.5:
-            reward *= 0.90
-        elif speed > 3.5:
-            reward *= 1.25
-        return current_reward
+        
+	    speed=params['speed']
+	    if speed < 3.5:
+	        reward *= 0.90
+	    elif speed >= 3.5:
+	        reward *= 1.25
+	    return reward
 
     def throttle(reward, params):
-	speed=params['speed']
-	steering=params['steering']
+        
+        speed=params['speed']
+        steering=params['steering_angle']
         # Decrease throttle while steering
         if speed > 3.0 - (0.4 * abs(steering)):
             reward *= 0.8
         return reward
         
     def keep_left(reward, params):
-	keep_left=params['keep_left']
+        keep_left=params['is_left_of_center']
         if keep_left:
             reward *= 1.2
         else:
