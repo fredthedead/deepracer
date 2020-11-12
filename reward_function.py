@@ -106,6 +106,30 @@ def reward_function(params):
             reward += 10.0
 
         return float(reward)
+
+    def fast_speed(reward, params):
+	speed=params['speed']
+        if speed < 3.5:
+            reward *= 0.90
+        elif speed > 3.5:
+            reward *= 1.25
+        return current_reward
+
+    def throttle(reward, params):
+	speed=params['speed']
+	steering=params['steering']
+        # Decrease throttle while steering
+        if speed > 3.0 - (0.4 * abs(steering)):
+            reward *= 0.8
+        return reward
+        
+    def keep_left(reward, params):
+	keep_left=params['keep_left']
+        if keep_left:
+            reward *= 1.2
+        else:
+            reward *= 0.9
+        return reward
                
     reward=0
     reward=all_wheels_on_track(reward,params)
@@ -113,6 +137,9 @@ def reward_function(params):
     reward=stay_at_center(reward,params)
     reward=steering_angle(reward,params)
     reward=progress(reward,params)
+    reward=fast_speed(reward,params)
+    reward=throttle(reward,params)
+    reward=keep_left(reward,params)
 
     
     return float(reward)
