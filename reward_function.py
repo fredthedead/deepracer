@@ -136,16 +136,16 @@ def reward_function(params):
     def keep_one_side(reward,params):
         is_reversed=params['is_reversed']
         keep_left=params['is_left_of_center']
-        if is_reversed==true
+        if is_reversed==True:
             if keep_left:
-            reward *= 0.9
+                reward *= 0.9
             else:
-            reward *= 1.2
-        else
+                reward *= 1.2
+        else:
             if keep_left:
-            reward *= 1.2
+                reward *= 1.2
             else:
-            reward *= 0.9
+                reward *= 0.9
         return reward
             
                
