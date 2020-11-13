@@ -132,6 +132,22 @@ def reward_function(params):
         else:
             reward *= 0.9
         return reward
+
+    def keep_one_side(reward,params):
+        is_reversed=params['is_reversed']
+        keep_left=params['is_left_of_center']
+        if is_reversed==true
+            if keep_left:
+            reward *= 0.9
+            else:
+            reward *= 1.2
+        else
+            if keep_left:
+            reward *= 1.2
+            else:
+            reward *= 0.9
+        return reward
+            
                
     reward=0
     reward=all_wheels_on_track(reward,params)
@@ -141,7 +157,8 @@ def reward_function(params):
     reward=progress(reward,params)
     reward=fast_speed(reward,params)
     reward=throttle(reward,params)
-    reward=keep_left(reward,params)
+    #reward=keep_left(reward,params)
+    reward=keep_one_side(reward,params)
 
     
     return float(reward)
