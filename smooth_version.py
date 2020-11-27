@@ -106,7 +106,7 @@ def reward_function(params):
     reward=waypoints(reward,params)
     reward=stay_at_center(reward,params)
     reward=steering_angle(reward,params)
-    reward=progress(reward,params)
+    #reward=progress(reward,params)
     reward=keep_left(reward,params)
 
     
